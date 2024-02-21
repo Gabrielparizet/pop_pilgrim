@@ -3,7 +3,7 @@ defmodule PopPilgrim.Repo.Migrations.AddUsers do
 
   def change do
     create table(:users, primary_key: false, prefix: "public") do
-      add(:id, :uuid, primary_key: true)
+      add(:id, :uuid, primary_key: true, default: fragment("gen_random_uuid()"))
       add(:username, :string)
       add(:hashed_password, :string)
       add(:email, :string)

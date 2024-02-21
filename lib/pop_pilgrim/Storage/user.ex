@@ -1,4 +1,4 @@
-defmodule PopPilgrim.Accounts.Users do
+defmodule PopPilgrim.Storage.User do
   use Ecto.Schema
   import Ecto.Changeset
 
