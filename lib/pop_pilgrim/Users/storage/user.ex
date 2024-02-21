@@ -1,8 +1,7 @@
-defmodule PopPilgrim.Storage.User do
+defmodule PopPilgrim.Users.Storage.User do
   use Ecto.Schema
   import Argon2
   import Ecto.Changeset
-
 
   @primary_key false
   schema "users" do
@@ -34,7 +33,10 @@ defmodule PopPilgrim.Storage.User do
     |> cast(params, [:hashed_password])
     |> validate_required([:hashed_password])
     |> validate_length(:hashed_password, min: 8, max: 25)
-    |> validate_format(:hashed_password, ~r/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])/, message: "must contain at least one uppercase letter, one lowercase letter, one number, and one special symbol")
+    |> validate_format(:hashed_password, ~r/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])/,
+      message:
+        "must contain at least one uppercase letter, one lowercase letter, one number, and one special symbol"
+    )
     |> put_pass_hash()
   end
 
@@ -43,7 +45,8 @@ defmodule PopPilgrim.Storage.User do
       %Ecto.Changeset{valid?: true, changes: %{hashed_password: password}} ->
         put_change(changeset, :hashed_password, hash_pwd_salt(password))
 
-      _ -> changeset
+      _ ->
+        changeset
     end
   end
 end
