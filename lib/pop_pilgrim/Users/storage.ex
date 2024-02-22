@@ -1,4 +1,7 @@
 defmodule PopPilgrim.Users.Storage do
+  @moduledoc """
+  The module for DB access for Users context
+  """
 
   alias PopPilgrim.Users
   alias PopPilgrim.Users.Storage.User

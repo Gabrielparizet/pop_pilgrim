@@ -1,4 +1,8 @@
 defmodule PopPilgrim.Users.Storage.User do
+  @moduledoc """
+  The schema for a User
+  """
+
   use Ecto.Schema
   import Argon2
   import Ecto.Changeset
