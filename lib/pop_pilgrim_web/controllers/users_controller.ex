@@ -7,4 +7,9 @@ defmodule PopPilgrimWeb.UsersController do
     all_users = Users.get_all_users()
     json(conn, all_users)
   end
+
+  def get_by_username(conn, %{"username" => username}) do
+    user = Users.get_user_by_username(username)
+    json(conn, user)
+  end
 end
