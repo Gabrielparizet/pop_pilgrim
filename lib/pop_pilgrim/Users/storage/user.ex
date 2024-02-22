@@ -38,6 +38,7 @@ defmodule PopPilgrim.Users.Storage.User do
         "must contain at least one uppercase letter, one lowercase letter, one number, and one special symbol"
     )
     |> put_pass_hash()
+    |> modify_birthday(params)
   end
 
   defp put_pass_hash(changeset) do
@@ -48,5 +49,28 @@ defmodule PopPilgrim.Users.Storage.User do
       _ ->
         changeset
     end
+  end
+
+  defp modify_birthday(changeset, params) do
+    case changeset do
+      %Ecto.Changeset{valid?: true} ->
+        birthday =
+          if Map.has_key?(params, :birthday) do
+            convert_date(params[:birthday])
+          else
+            nil
+          end
+
+        put_change(changeset, :birthday, birthday)
+
+      _ -> changeset
+    end
+  end
+
+  defp convert_date(date) do
+    values = String.split(date, "/")
+    [month, day, year] = Enum.map(values, &String.to_integer/1)
+    naive_date_time = NaiveDateTime.new!(year, month, day, 0, 0, 0)
+    DateTime.from_naive!(naive_date_time, "Etc/UTC")
   end
 end

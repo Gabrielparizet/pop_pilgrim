@@ -8,6 +8,7 @@ defmodule PopPilgrim.Users.Storage do
 
   def create_user(attrs \\ %{}) do
     %User{}
+    # |> Map.update(:birthday, nil, &convert_date/1)
     |> User.registration_changeset(attrs)
     |> Repo.insert()
   end
@@ -42,11 +43,5 @@ defmodule PopPilgrim.Users.Storage do
   end
 
   defp to_context_struct(nil), do: nil
-
-  def convert_date(date) do
-    values = String.split(date, "/")
-    [month, day, year] = Enum.map(values, &String.to_integer/1)
-    Date.new!(year, month, day)
-  end
 
 end
