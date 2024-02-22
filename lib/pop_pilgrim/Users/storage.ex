@@ -21,7 +21,7 @@ defmodule PopPilgrim.Users.Storage do
 
     query
     |> Repo.all()
-    |> to_context_struct()
+    |> Enum.map(&to_context_struct/1)
   end
 
   def get_user_by_username(username) do
@@ -40,6 +40,8 @@ defmodule PopPilgrim.Users.Storage do
   defp to_context_struct(%User{} = index_db) do
     struct(Users.User, Map.from_struct(index_db))
   end
+
+  defp to_context_struct(nil), do: nil
 
   def convert_date(date) do
     values = String.split(date, "/")

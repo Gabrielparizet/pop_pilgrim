@@ -6,6 +6,8 @@ defmodule PopPilgrim.Users do
     User module defines the struct for a user
     """
 
+    @derive Jason.Encoder
+
     defstruct [
       :id,
       :username,

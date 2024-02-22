@@ -18,6 +18,7 @@ defmodule PopPilgrimWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/users", UsersController, :index
   end
 
   # Other scopes may use custom stacks.
