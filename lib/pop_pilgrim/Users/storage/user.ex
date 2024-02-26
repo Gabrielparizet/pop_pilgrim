@@ -9,7 +9,7 @@ defmodule PopPilgrim.Users.Storage.User do
 
   @primary_key false
   schema "users" do
-    field(:id, :binary_id)
+    field(:id, :binary_id, primary_key: true)
     field(:username, :string)
     field(:hashed_password, :string)
     field(:email, :string)

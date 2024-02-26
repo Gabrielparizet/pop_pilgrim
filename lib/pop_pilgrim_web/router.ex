@@ -19,7 +19,10 @@ defmodule PopPilgrimWeb.Router do
 
     get "/", PageController, :home
     get "/users", UsersController, :index
-    get "/users/:username", UsersController, :get_by_username
+    get "/users/username/:username", UsersController, :get_user_by_username
+    get "/users/email/:email", UsersController, :get_user_by_email
+    get "/users/id/username/:username", UsersController, :get_user_id
+    get "/users/id/email/:email", UsersController, :get_user_id
   end
 
   # Other scopes may use custom stacks.

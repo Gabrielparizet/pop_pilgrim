@@ -17,26 +17,44 @@ defmodule PopPilgrim.Users.Storage do
   end
 
   def get_all_users do
-    query =
-      from(
-        u in User,
-        select: u
-      )
-
-    query
+    from(
+      u in User,
+      select: u
+    )
     |> Repo.all()
     |> Enum.map(&to_context_struct/1)
   end
 
-  def get_user_by_username(username) do
-    query =
-      from(
-        u in User,
-        where: u.username == ^username,
-        select: u
-      )
+  def get_user(id) do
+    Repo.get(User, id)
+    |> to_context_struct()
+  end
 
-    query
+  def get_user!(id) do
+    Repo.get!(User, id)
+    |> to_context_struct()
+  end
+
+  def get_user_by(params) do
+    Repo.get_by(User, params)
+    |> to_context_struct()
+  end
+
+  def get_user_id(params) do
+    user = get_user_by(params)
+    Map.get(user, :id, user.id)
+  end
+
+  def get_user_by_username(username) do
+    User
+    |> where(username: ^username)
+    |> Repo.one()
+    |> to_context_struct()
+  end
+
+  def get_user_by_email(email) do
+    User
+    |> where(email: ^email)
     |> Repo.one()
     |> to_context_struct()
   end
