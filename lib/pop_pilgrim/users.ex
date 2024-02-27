@@ -1,5 +1,7 @@
 defmodule PopPilgrim.Users do
 
+  import Argon2
+
   alias PopPilgrim.Users.Storage
 
   defmodule User do
@@ -61,6 +63,21 @@ defmodule PopPilgrim.Users do
 
   def get_user_by_email(email) do
     Storage.get_user_by_email(email)
+  end
+
+  def authenticate_by_username_and_pass(username, given_pass) do
+    user = get_user_by_username(username)
+    cond do
+      user && verify_pass(given_pass, user.hashed_password) ->
+        {:ok, user}
+
+      user ->
+        {:error, :unauthorized}
+
+      true ->
+        no_user_verify()
+        {:error, :not_found}
+    end
   end
 
 end
