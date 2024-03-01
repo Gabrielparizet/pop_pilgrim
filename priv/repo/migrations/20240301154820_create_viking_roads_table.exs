@@ -29,6 +29,10 @@ defmodule PopPilgrim.Repo.Migrations.CreateVikingRoadsTable do
       add(:website, :string)
       add(:lattitude, :numeric)
       add(:longitute, :numeric)
+
+      timestamps(type: :utc_datetime)
     end
+
+    create unique_index(:vikings, :id)
   end
 end
