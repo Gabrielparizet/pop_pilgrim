@@ -1,7 +1,7 @@
 Name,Country,Region,City,Road,Historical Period,Geographical zone,Archeological/ Historical Site,Religious Site,Touristic Site,Museum,Univeristy/ Research Institute,Hike,National parc,Battle site,Reconstitution,Activities,Events,Travel agency,Administrative entity,Association,Shops,DVA Members,Website,Lattitude,Longitude
 Polotsk,Belarus,,,Vikings,,,true,true,true,,,,,,,,,,,,,,,55.4866,28.7831
 L'Anse aux Medows,Canada,Terre-Neuve-et-labrador,L'Anse aux Medows,Vikings,,,true,,true,,,,,,,,,,,,,,,51.6054,-55.5326
-Lindholm Høje,Denmark,,,Vikings,,,true,true,true,true,,TRUE,,,,,,,,,,,,57.0392,9.9227
+Lindholm Høje,Denmark,,,Vikings,,,true,true,true,true,,true,,,,,,,,,,,,57.0392,9.9227
 Fyrkat,Denmark,,,Vikings,,,true,true,true,,,,,,,,,,,,,,,56.5534,9.6005
 Moesgaard Museum,Denmark,,,Vikings,,,,,true,true,,,,,,,,,,,,,,56.1118,10.2039
 Ribe Vikinge Center,Denmark,,,Vikings,,,,,true,true,,,,,true,true,,,,,,,,55.3281,8.7704
@@ -36,7 +36,7 @@ Château de Pirou,France,,,Vikings,,,true,,true,,,,,,,,,,,,,,,49.2267,-1.5962
 Association Viking 911,France,,,Vikings,,,,,true,,,,,,true,true,,,,,,true,,49.1588,1.5494
 Hvasley Church,Greenland,Kujalleq,Hvasley,Vikings,,,true,true,true,,,,,,,,,,,,,,,55.9384,-3.2707
 Brattahlid,Greeland,Kujalleq,Qassiarsuk,Vikings,,,true,,true,,,,,,,,,,,,,,,64.1894,-51.7212
-Garðar,Greenland,Kujalleq,Igaliku,Vikings,,,true,true,true,,,true?,,,,,,,,,,,,60.9915,-45.5735
+Garðar,Greenland,Kujalleq,Igaliku,Vikings,,,true,true,true,,,true,,,,,,,,,,,,60.9915,-45.5735
 Spakonuhof - Museum of Prophecies,Iceland,	Norðurland vestra,Skagaströnd,Vikings,,,,,true,true,,,,,,,,,,,,,,66.0714,-21.5323
 Eiríksstaðir - Viking Home Museum,Iceland,	Vesturland,Búðardalur,Vikings,,,,,true,true,,,,,,,,,,,,,,65.0615,-21.3915
 Reykholt,Iceland,Vesturland,Borgarbyggð,Vikings,,,true,true,true,true,,true,,true,,,,,,,,,,64.6595,-20.3023

@@ -1,16 +1,21 @@
 defmodule PopPilgrim.Roads.VikingsImporter do
 
   def run do
-    file = File.read!("/Users/gabrielparizet/workspace/pop_pilgrim/priv/roads/vikings.csv")
-    |> String.split(["\n", "\r"])
+    case File.read("/Users/gabrielparizet/workspace/pop_pilgrim/priv/roads/vikings.csv") do
+      {:ok, file} ->
+        file
+        |> String.split(~r/\r?\n/)
+        |> List.delete_at(0)
+        |> Enum.map(&String.trim(&1))  # Nettoyer chaque ligne
+        |> Enum.map(&String.split(&1, ","))
+        |> Enum.map(&make_map/1)
 
-    point_of_interests =
-      file
-      |> Enum.map(&String.split(&1, ","))
-      |> make_map()
+      {:error, _reason} ->
+        IO.puts("Error reading file")
+    end
   end
 
-  def make_map(
+  def make_map([
     name,
     country,
     region,
@@ -37,7 +42,7 @@ defmodule PopPilgrim.Roads.VikingsImporter do
     website,
     lattitude,
     longitude
-  ) do
+  ]) do
     %{
       name: name,
       country: country,
@@ -46,33 +51,28 @@ defmodule PopPilgrim.Roads.VikingsImporter do
       road: road,
       historical_period: historical_period,
       geographical_zone: geographical_zone,
-      archeological_historical_site,
-      religious_site,
-      touristic_site,
-      museum,
-      university_research_institute,
-      hike,
-      national_parc,
-      battle_site,
-      reconstitution,
-      activities,
-      events,
-      travel_agency,
-      administrative_entity,
-      association,
-      shops,
-      dva_members,
-      website,
-      lattitude,
-      longitude
+      archeological_historical_site: string_to_bool(archeological_historical_site),
+      religious_site: string_to_bool(religious_site),
+      touristic_site: string_to_bool(touristic_site),
+      museum: string_to_bool(museum),
+      university_research_institute: string_to_bool(university_research_institute),
+      hike: string_to_bool(hike),
+      national_parc: string_to_bool(national_parc),
+      battle_site: string_to_bool(battle_site),
+      reconstitution: string_to_bool(reconstitution),
+      activities: string_to_bool(activities),
+      events: string_to_bool(events),
+      travel_agency: string_to_bool(travel_agency),
+      administrative_entity: string_to_bool(administrative_entity),
+      association: string_to_bool(association),
+      shops: string_to_bool(shops),
+      dva_members: string_to_bool(dva_members),
+      website: website,
+      lattitude: String.to_float(lattitude),
+      longitude: String.to_float(longitude)
     }
   end
 
-
-  # ["Name", "Country", "Region", "City", "Road", "Historical Period",
-   "Geographical zone", "Archeological/ Historical Site", "Religious Site",
-   "Touristic Site", "Museum", "Univeristy/ Research Institute", "Hike",
-   "National parc", "Battle site", "Reconstitution", "Activities", "Events",
-   "Travel agency", "Administrative entity", "Association", "Shops",
-   "DVA Members", "Website", "Lattitude", "Longitude"]
+  def string_to_bool("true"), do: true
+  def string_to_bool(""), do: false
 end
