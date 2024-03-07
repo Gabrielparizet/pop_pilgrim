@@ -9,7 +9,7 @@ defmodule PopPilgrim.Repo.Migrations.CreateVikingRoadsTable do
       add(:city, :string)
       add(:road, :string)
       add(:historical_period, :string)
-      add(:geographical_period, :string)
+      add(:geographical_zone, :string)
       add(:archeological_historical_site, :boolean)
       add(:religious_site, :boolean)
       add(:touristic_site, :boolean)

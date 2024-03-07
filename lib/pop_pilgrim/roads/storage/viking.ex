@@ -1,4 +1,4 @@
-defmodule PopPilgrim.Roads.Storage.Vikings do
+defmodule PopPilgrim.Roads.Storage.Viking do
   @moduledoc """
   The schema for the locations of the Vikings' Road
   """
@@ -13,7 +13,7 @@ defmodule PopPilgrim.Roads.Storage.Vikings do
     field(:city, :string)
     field(:road, :string)
     field(:historical_period, :string)
-    field(:geographical_period, :string)
+    field(:geographical_zone, :string)
     field(:archeological_historical_site, :boolean)
     field(:religious_site, :boolean)
     field(:touristic_site, :boolean)
@@ -31,10 +31,9 @@ defmodule PopPilgrim.Roads.Storage.Vikings do
     field(:shops, :boolean)
     field(:dva_members, :boolean)
     field(:website, :string)
-    field(:lattitude, :float)
-    field(:longitute, :float)
+    field(:lattitude, :decimal)
+    field(:longitute, :decimal)
 
     timestamps()
   end
-
 end

@@ -1,4 +1,9 @@
 defmodule PopPilgrim.Roads.VikingsImporter do
+@moduledoc """
+Module for importing the Vikings' Road point_of_interests in 'public.vikings' table
+"""
+
+  alias PopPilgrim.Roads.Storage
 
   def run do
     case File.read("/Users/gabrielparizet/workspace/pop_pilgrim/priv/roads/vikings.csv") do
@@ -6,9 +11,10 @@ defmodule PopPilgrim.Roads.VikingsImporter do
         file
         |> String.split(~r/\r?\n/)
         |> List.delete_at(0)
-        |> Enum.map(&String.trim(&1))  # Nettoyer chaque ligne
+        |> Enum.map(&String.trim(&1))
         |> Enum.map(&String.split(&1, ","))
         |> Enum.map(&make_map/1)
+        |> Enum.map(&Storage.insert_points_of_interests/1)
 
       {:error, _reason} ->
         IO.puts("Error reading file")
